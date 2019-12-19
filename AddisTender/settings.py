@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'Home.apps.HomeConfig',
-    'account.apps.AccountConfig',
+    'users.apps.UsersConfig',
     #'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -123,6 +123,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 LOGIN_REDIRECT_URL = 'Home:index'
 LOGOUT_REDIRECT_URL = 'Home:index'
+LOGIN_URL = 'login'
 

@@ -23,9 +23,9 @@
 
 
 
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
 
-  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
   <link rel="stylesheet" href="{% static 'css/style.css'%} ">
 
@@ -81,15 +81,21 @@
 
                         </ul>
                       </li>
-                      <li><a href="contact.html">Contact</a></li>
-                      <li><a href="{% url 'account:login' %}"><span
-                            class="bg-primary text-white py-3 px-4 rounded"><span
-                              class="icon-plus mr-3"></span>Login</span></a></li>
+                      <li><a href="{}">Contact</a></li>
+                      {% if user.is_authenticated %}
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'profile'  %}">Profile</a>
+                        </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Log Out</a>
+                      </li>
+                      {% else %}
+                      <li><a href="#"><span class="bg-primary text-white py-3 px-4 rounded">
+                        <span class="icon-plus mr-3"></span>Login</span></a></li>
 
-                      <li><a href="{% url 'account:register' %}"><span
-                            class="bg-primary text-white py-3 px-4 rounded"><span
+                      <li><a href="{% url 'register' %}"><span class="bg-primary text-white py-3 px-4 rounded"><span
                               class="icon-plus mr-3"></span>Register</span></a></li>
-
+                              {% endif %}
                     </ul>
                   </div>
                 </nav>
@@ -100,21 +106,21 @@
       </div>
     </div>
     <div class="site-section">
-     {% if messages %}
-     {%for message in messages%}
-
-     <div class = "alert alert-{{message.tags}}">
-       {{message}}
-     </div>
-     {% endfor %}
-     {% endif %}
-         
-            {% block content %}
-
-            {% endblock %}
-          </div>
-       
-
+        {% if messages %}
+        {%for message in messages%}
+  
+        <div class="alert alert-{{message.tags}}">
+          {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+  
+        {% block content %}
+  
+        {% endblock %}
+      </div>
+  
+  
 
 
 
