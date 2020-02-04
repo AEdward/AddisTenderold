@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+      <div class="row mb-3">
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+       <span class="cen"> <h4 class="mb-0 site-logo">Post New <strong class="font-weight-bold"> Tender</strong>  </h4></span>  
+              <form method="POST" class="p-5 bg-white">
+                <div class="row form-group">
+                 
+                  <div class="col-md-12 mb-3 mb-md-0">
+  
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                      
+
+                    {{form }}
+            
+                      
+                    </fieldset>
+                    <div class="form-group">
+                      <button class="bg-primary text-white py-3 px-4 rounded" class="icon-plus mr-3" type="submit" value="submit"> Post</button>
+                    </div>
+                  </div>
+                </div>
+  
+              </form>
+            
+  
+            </div>
+  
+  
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+{% endblock %}

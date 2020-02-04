@@ -95,8 +95,14 @@ a {
 .btn-search {
   height: 55px; }
 
+
+#con {
+  width: 800px;
+}
 .form-control {
-  height: 55px; }
+  height: 55px;
+
+ }
   .form-control:active, .form-control:focus {
     border-color: #28a745; }
   .form-control:hover, .form-control:active, .form-control:focus {
@@ -275,9 +281,9 @@ a {
         .site-navbar .site-navigation .site-menu > li:last-child > a {
           padding-right: 0; }
     .site-navbar .site-navigation .site-menu .has-children {
-      position: relative; }
+      position: fixed; }
       .site-navbar .site-navigation .site-menu .has-children > a {
-        position: relative;
+        position: fixed;
         padding-right: 20px; }
         .site-navbar .site-navigation .site-menu .has-children > a:before {
           position: absolute;
@@ -362,6 +368,16 @@ a {
           margin-top: 0px;
           visibility: visible;
           opacity: 1; }
+
+.site-header nav ul li.current-menu-item a:link,
+.site-header nav ul li.current-menu-item a:visited{
+            text-decoration: underline;
+            text-decoration-color: #0d0d0d ;
+           
+          
+          }
+
+
 
 .site-mobile-menu {
   width: 300px;
@@ -1006,7 +1022,9 @@ margin-left: 200px;
 
 
 
-
+.cen{
+  text-align: center;
+}
 
 
 
@@ -1050,3 +1068,74 @@ margin-left: 200px;
     background: #28a745;
     color: #fff;
     border: 1px solid transparent; }
+ 
+ 
+    /*About page*/
+
+    .about h1{
+font-size: 40px;
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+margin-bottom: 10px;
+font-weight: 20px; 
+
+    }
+.about p{
+  font-size: 20px;
+  font-weight: 15px;
+  text-align: center;
+  font-weight: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+  /*aboput page end here*/
+
+
+  /* Post page */
+
+.post{
+  background-color:#28a745!important;
+  color: white;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; }
+  @media screen and (prefers-reduced-motion: reduce){
+  }  
+
+.post a{
+
+  color: white;
+  font-size: 30px;
+}
+
+
+
+.post a:hover{
+
+  color: Black;
+}
+
+
+
+
+
+  /*post page ends here */
+
+
+

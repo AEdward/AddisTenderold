@@ -53,7 +53,8 @@
           <div class="py-1">
             <div class="row align-items-center">
               <div class="col-2">
-                <h2 class="mb-0 site-logo"><a href="{% url 'Home:index' %}">Addis<strong class="font-weight-bold">Tender</strong>
+                <h2 class="mb-0 site-logo"><a href="{% url 'Home:index' %}">Addis<strong
+                      class="font-weight-bold">Tender</strong>
                   </a></h2>
               </div>
               <div class="col-10">
@@ -62,46 +63,45 @@
                     <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#"
                         class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
 
-                 
 
-                       
-                                           
+                    {% if user.is_authenticated %}
 
-                         
-              
-                      
-                      {% if user.is_authenticated %}
-                     
-                      <ul class="site-menu js-clone-nav d-none d-lg-block">
-                        
-                        <li><a href="{% url 'Home:index' %}">Home</a></li>
-                        <li ><a href="{% url 'about:about' %}">About us</a></li>
-                        <li><a href="{% url 'tenders:ten' %}">Tenders</a></li>
-                        <li><a href="{% url 'contact:contact' %}">Contact</a></li>
-                       
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#postModal">  <span class="icon-plus mr-3"></span>Post a Tender </button>
-                      <li class="has-children"> &nbsp; &nbsp; Howdy,   <span style="color: teal;">{{user.username}} </span> <img src="https://img.icons8.com/pastel-glyph/50/000000/person-male.png">
-                      
+                    <ul class="site-menu js-clone-nav d-none d-lg-block">
+
+                      <li><a href="{% url 'Home:index' %}">Home</a></li>
+                      <li><a href="{% url 'about:about' %}">About us</a></li>
+                      <li><a href="{% url 'tenders:index' %}">Tenders</a></li>
+                      <li><a href="#">Notification</a></li>
+                      <li><a href="#">Message</a></li>
+                      <li><a href="{% url 'contact:contact' %}">Contact</a></li>
+                      <button class="post"> <a href="{% url 'tenders:addnew' %}"> <span class="icon-plus mr-3"></span>
+                          Post a Tender </a></button>
+                      <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#postModal">  <span class="icon-plus mr-3"></span></button>-->
+                      <li class="has-children"> &nbsp; &nbsp; Howdy, <span style="color: teal;">{{user.username}}
+                        </span> <img src="https://img.icons8.com/pastel-glyph/50/000000/person-male.png">
+
 
                         <ul class="dropdown arrow-top">
-                       <strong  style="color: white;">&nbsp; &nbsp; <img class="round-circle " src = "{{user.profile.image.url}}" > </strong>
-                       <li><a href="{% url 'profile'  %}"> Edit Profile</a></li>
-                        <li> <a href="{% url 'Logout'  %}">Log Out</a></li>
+                          <strong style="color: white;">&nbsp; &nbsp; <img class="round-circle "
+                              src="{{user.profile.image.url}}"> </strong>
+                          <li><a href="{% url 'profile'  %}"> Edit Profile</a></li>
+                          <li> <a href="{% url 'Logout'  %}">Log Out</a></li>
                         </ul>
-                        </li>
-                       
+                      </li>
+
                       {% else %}
-                  
+
                       <ul class="site-menu js-clone-nav d-none d-lg-block">
                         <li><a href="{% url 'Home:index' %}">Home</a></li>
                         <li><a href="{% url 'about:about' %}">About us</a></li>
                         <li><a href="{% url 'contact:contact' %}">Contact</a></li>
-                      <li><a href="{% url 'Login'  %}"><span class="bg-primary text-white py-3 px-4 rounded">
-                       Login</span></a></li>
+                        <li><a href="{% url 'Login'  %}"><span class="bg-primary text-white py-3 px-4 rounded">
+                              Login</span></a></li>
 
-                      <li><a href="{% url 'register' %}"><span class="bg-primary text-white py-3 px-4 rounded" > Register</span></a></li>
-                              {% endif %}
-                    </ul>
+                        <li><a href="{% url 'register' %}"><span class="bg-primary text-white py-3 px-4 rounded">
+                              Register</span></a></li>
+                        {% endif %}
+                      </ul>
                   </div>
                 </nav>
               </div>
@@ -112,8 +112,8 @@
     </div>
 
 
- <!--Post Form starts here-->
- 
+    <!--Post Form starts here-->
+
     <div class="modal fade" role="dialog" id="postModal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -121,76 +121,33 @@
             <h3 class="modal-title"> Post New Tender</h3>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-  
-  
-  
-  
-  
- 
-          <div class="modal-body">
-
-            <div class="form-group">  
-              <input type="checkbox" id="option-price-1"> <span class="text-success">$300</span> For 30 days
-            </div>
-
-            <div class="form-group">  
-              <input type="checkbox" id="option-price-2"> <span class="text-success">$200</span> / Monthly Recurring>
-            </div>
-            <div class="form-group">  
-              <label class="font-weight-bold" for="fullname">Tender Title</label>
-              <input type="text" id="fullname" class="form-control" placeholder="eg. Full Stack Frontend">
-            </div>
-            <div class="form-group">  
-              <label class="font-weight-bold" for="fullname">Company</label>
-                  <input type="text" id="fullname" class="form-control" placeholder="eg. Facebook, Inc.">
-            </div>
-            <div class="form-group">  
-              <div class="col-md-12"><h3>Tender Type</h3></div>
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label for="option-job-type-1">
-                    <input type="radio" id="option-job-type-1" name="job-type"> Local Tender
-                  </label>
-                </div>
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label for="option-job-type-2">
-                    <input type="radio" id="option-job-type-2" name="job-type"> Internation Tender
-                  </label>
-                </div>
 
 
-            </div>
-            <div class="form-group">  
-              <input type="checkbox" id="option-price-2"> <span class="text-success"></span> Upload document
-            </div>
-  
-          </div>
-  
-  
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-success">post a Tender</button>
-          </div>
+          {{form}}
         </div>
       </div>
     </div>
 
 
-   <!--Post form ends here--> 
-     <div class="site-section">
-        {% if messages %}
-        {%for message in messages%}
-  
-        <div class="alert alert-{{message.tags}}">
-          {{message}}
-        </div>
-        {% endfor %}
-        {% endif %}
-  
-        {% block content %}
-  
-        {% endblock %}
+    <!--Post form ends here-->
+
+
+    <div class="site-section">
+      {% if messages %}
+      {%for message in messages%}
+
+      <div class="alert alert-{{message.tags}}">
+        {{message}}
       </div>
-  
-  
+      {% endfor %}
+      {% endif %}
+
+      {% block content %}
+
+      {% endblock %}
+    </div>
+
+
 
 
 
@@ -203,29 +160,29 @@
         <div class="row">
           <div class="col-md-4">
             <h3 class="footer-heading mb-4 text-white">About</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat quos rem ullam, placeat amet.</p>
-            <p><a href="#" class="btn btn-primary pill text-white px-4">Read More</a></p>
+            <p>Addis Tender is your dedicated website that brings you tender information from all corners of the
+              country. Here at Addis Tender, we understand that following tenders is hard,
+              tiresome and requires time and sometimes it requires you hiring more staff dedicated for this job.</p>
+            <p><a href="{% url 'about:about' %}" class="btn btn-primary pill text-white px-4">Read More</a></p>
           </div>
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-6">
                 <h3 class="footer-heading mb-4 text-white">Quick Menu</h3>
                 <ul class="list-unstyled">
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Approach</a></li>
-                  <li><a href="#">Sustainability</a></li>
-                  <li><a href="#">News</a></li>
-                  <li><a href="#">Careers</a></li>
+                  <li><a href="{% url 'Home:index' %}">Home</a></li>
+                  <li><a href="{% url 'about:about' %}">About</a></li>
+                  <li><a href="{% url 'contact:contact' %}">Contact</a></li>
+
                 </ul>
               </div>
               <div class="col-md-6">
                 <h3 class="footer-heading mb-4 text-white">Categories</h3>
                 <ul class="list-unstyled">
-                  <li><a href="#">Full Time</a></li>
-                  <li><a href="#">Freelance</a></li>
-                  <li><a href="#">Temporary</a></li>
-                  <li><a href="#">Internship</a></li>
+                  <li><a href="#">Accounting / Finanace</a></li>
+                  <li><a href="#">Automotive Jobs</a></li>
+                  <li><a href="#">Construction / Facilities</a></li>
+                  <li><a href="#">Telecommunications</a></li>
                 </ul>
               </div>
             </div>
@@ -234,11 +191,11 @@
 
           <div class="col-md-2">
             <div class="col-md-12">
-              <h3 class="footer-heading mb-4 text-white">Social Icons</h3>
+              <h3 class="footer-heading mb-4 text-white">Follow Us on</h3>
             </div>
             <div class="col-md-12">
               <p>
-                <a href="#" class="pb-2 pr-2 pl-0"><span class="icon-facebook"></span></a>
+                <a href="facebook.com {{request.get_full_path|urlencode}}" class="pb-2 pr-2 pl-0"><span class="icon-facebook"></span></a>
                 <a href="#" class="p-2"><span class="icon-twitter"></span></a>
                 <a href="#" class="p-2"><span class="icon-instagram"></span></a>
                 <a href="#" class="p-2"><span class="icon-vimeo"></span></a>

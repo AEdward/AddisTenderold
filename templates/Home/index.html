@@ -112,7 +112,34 @@
               </div>
             </div>
           </a>
+          
+<!--Post from the tender-->
 
+        {% for post in posts %}
+
+          <a href="#" class="job-item d-block d-md-flex align-items-center  border-bottom fulltime">
+
+            <div class="job-details h-100">
+              <div class="p-3 align-self-center">
+                <h3>{{post.title}}</h3>
+                <div class="d-block d-lg-flex">
+                  <div class="mr-3"><span class="icon-suitcase mr-1"></span> By {{ post.company }} on {{ post.date_posted }}</div>
+                  <div class="mr-3"><span class="icon-room mr-1"></span> Florida</div>
+                  <div><span class="icon-money mr-1"></span> $55000 &mdash; 70000</div>
+                </div>
+              </div>
+            </div>
+            <div class="job-category align-self-center">
+              <div class="p-3">
+                <span class="text-info p-2 rounded border border-info">Full Time</span>
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+
+     
+
+          
           <a href="job-single.html" class="job-item d-block d-md-flex align-items-center freelance">
 
             <div class="job-details h-100">

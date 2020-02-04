@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'contact.apps.ContactConfig',
     'tenders.apps.TendersConfig',
+    #'Notification.apps.NotificationConfig',
     #'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'django.contrib.category'
+    #'channels'
+   
+   
 ]
 
 MIDDLEWARE = [
