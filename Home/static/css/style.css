@@ -916,6 +916,101 @@ a {
   padding: 5px 0;
   padding-left: 30px; }
 
+
+/*unit 9*/
+
+.unit-9 .accordion-item .heading {
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 100px 0; }
+  .unit-9 .accordion-item .heading > a {
+    padding-left: 35px;
+    position: relative;
+    color: #000; }
+    .unit-9 .accordion-item .heading > a:before {
+      width: 20px;
+      height: 20px;
+      line-height: 18px;
+      border: 1px solid #ccc;
+      text-align: center;
+      font-size: 18px;
+      top: .1em;
+      left: 0; }
+    .unit-9 .accordion-item .heading > a[aria-expanded="true"]:before {
+      font-family: 'icomoon';
+      position: absolute;
+      content: "\e316";
+      -webkit-transition: .3s all ease;
+      -o-transition: .3s all ease;
+      transition: .3s all ease;
+      background: #28a745;
+      color: #fff;
+      border: 1px solid #28a745; }
+    .unit-9 .accordion-item .heading > a[aria-expanded="false"]:before {
+      content: "\e313";
+      color: #ccc;
+      font-family: 'icomoon';
+      position: absolute;
+      -webkit-transition: .3s all ease;
+      -o-transition: .3s all ease;
+      transition: .3s all ease; }
+
+.unit-9 .accordion-item .body-text {
+  padding: 5px 0;
+  padding-left: 30px; }
+  .unit-9, .site-blocks-cover > .container > .row {
+    min-height: 300px;
+    height: calc(100vh); }
+ 
+
+
+
+/*unit 9*/
+
+
+/*--------------------------------------------------------------------------------*/
+
+  /*round-circle and account-img starts */
+
+
+
+.round-circle{
+height: 60px;
+border-style: solid;
+border-radius: 1000px;
+margin-left: 50px;
+
+}
+.account-img{
+  height: 200px;
+  border-radius: 100px;
+  border-style: solid;
+  border-color: green;
+  margin-left: 200px;
+  margin-top: 50px;
+  
+}
+.content-section{
+background-color: #f8f9fa;
+height: 300px;
+width: 50%;
+margin-left: 200px;
+}
+.media-body{
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+
+  /*round-circleand account-img ends */
+
+
+
+
+
+
+
+
 .team .person {
   display: block;
   -webkit-transition: .3s all ease;

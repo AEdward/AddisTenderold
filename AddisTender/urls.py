@@ -20,15 +20,20 @@ from users import views as user_view
 from django.conf import settings
 from django.conf.urls.static import static
 
+from chat.views import index
 
 urlpatterns = [
+    path('chat/', index, name='index'),
     path('admin/', admin.site.urls),
     path('', include('Home.urls')),
     path('about/', include('about.urls')),
+    path('contact/', include('contact.urls')),
+    path('tenders/', include('tenders.urls')),
     path('register/', user_view.register, name = 'register' ),
     path('login/', auth_views.LoginView.as_view(template_name = 'users/login.html'), name = 'Login' ),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'users/logout.html'), name = 'Logout' ),  
     path('profile/', user_view.profile, name = 'profile' ),
+    path('notification/', include('notification.urls')),
    
    
    # path('register/', include('users.urls')),
