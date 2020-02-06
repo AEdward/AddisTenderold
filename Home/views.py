@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import datetime
-from AddisTender.tenders import views, models
+#from AddisTender.tenders import views, models
 from django.views.generic import (ListView)
 def home(request):
     return render (request,'Home/index.html',{'title':'Home'})
@@ -30,9 +30,3 @@ posts = [
     }
 ]
 
-class PostListView(ListView):
-    model = tenders
-    template_name = 'tenders/tenders.html'
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
-    paginate_by = 4
