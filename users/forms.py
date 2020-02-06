@@ -18,27 +18,6 @@ class UserRegistrationForm(UserCreationForm):
             
                
         }
-'''
-        
-        username = forms.CharField(
-            widget = forms.TextInput (attrs = {'class' : 'form-control'})    
-        )
-            
-        email = forms.EmailField(
-            required = True, widget = forms.TextInput (attrs = {'class' : 'form-control'})    
-        )
-        password1 = forms.CharField(
-            widget = forms.TextInput (attrs = {'class' : 'form-control', 'type': 'password'})    
-        )
-        password2 = forms.CharField(
-           widget = forms.TextInput (attrs = {'class' : 'form-control' , 'type': 'password' })    
-        )
-            
-               
-        '''
-
-
-
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -47,8 +26,7 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ["username", "email"]
         widgets = {
-            'username' : forms.TextInput(attrs = {'class' : 'form-control', 'id' : 'con'}),
-            
+            'username' : forms.TextInput(attrs = {'class' : 'form-control', 'id' : 'con'}),         
             
                
         }

@@ -47,7 +47,7 @@
         <div class="col-md-12">
           <h3 ><a class="article-title" href="{% url 'tenders:detail' post.id %}" >{{post.title}}</a></h3>
 
-            <p>Category<a href="{% url 'tenders:category' post.category.pk %}">{{ post.category }}</a>
+            <p>Category<a href="#">  {{ post.category }}</a>
               By <a href="{% url 'tenders:user-posts' post.company.username %}">{{ post.company }}</a> on {{ post.date_posted }}</p>
           <!--  <p class="article-content">{{ post.body }}</p> -->
            

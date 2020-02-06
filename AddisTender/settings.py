@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'contact.apps.ContactConfig',
     'tenders.apps.TendersConfig',
-    #'Notification.apps.NotificationConfig',
+   #'notification.apps.NotificationConfig',
     #'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     #'django.contrib.category'
     #'channels'
    
@@ -138,3 +139,10 @@ LOGIN_REDIRECT_URL = 'Home:index'
 LOGOUT_REDIRECT_URL = 'Home:index'
 LOGIN_URL = 'login'
 
+
+EMAIL_HOST ='smtp.zoho.com'
+EMAIL_HOST_USER = 'anagiday@gmail.com'
+EMAIL_HOST_PASSWORD = 'magiccarpet858'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

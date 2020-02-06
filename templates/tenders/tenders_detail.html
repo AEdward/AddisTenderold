@@ -6,15 +6,17 @@
     <div class="col-md-12 card mb-4  mt-3 ">
       <div class="card-body">
         <div class="form-group">
-        {% if post.company == user %}
-          <a class="bg-secondary text-white py-1 px-1 rounded" class="icon-plus mr-3" href = "{% url 'tenders:update' post.id %}" > Update</a> 
-          <a class="bg-danger text-white py-1 px-1 rounded" class="icon-plus mr-3" href = "{% url 'tenders:delete' post.id %}" > Delete</a>
-          {% endif %}
+        
+
+          {% if object.company == user %}
+          <a class="bg-secondary text-white py-1 px-1 rounded" class="icon-plus mr-3" href = "{% url 'tenders:update' object.id %}" > Update</a> 
+          <a class="bg-danger text-white py-1 px-1 rounded" class="icon-plus mr-3" href = "{% url 'tenders:delete' object.id %}" > Delete</a>
+       {% endif %}
         </div>
         <div class="col-md-12">
-          <h1 class="article-title">{{post.title}}</h1>
-          <p>By  <a href="{% url 'tenders:user-posts' post.company.username %}">{{ post.company }}</a> on {{post.date_posted}}</p>
-          <p>{{post.body}}</p>
+          <h1 class="article-title">{{ object.title }}</h1>
+          <p>By  <a href="">{{ object.company }}</a> on {{ object.date_posted }}</p>
+          <p>{{ object.body }}</p>
 
         </div>
       

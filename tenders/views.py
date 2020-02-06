@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from .models import tenders
 import datetime
 from django.core.paginator import Paginator
-#from .forms import AddPost
+#from .forms import postForm
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
@@ -12,6 +12,7 @@ from django.views.generic import (ListView,
 DetailView,
 CreateView,
 UpdateView,DeleteView)
+from django import forms
 
 #from django.views.generic import ListView, DetailView
 
@@ -59,16 +60,17 @@ class CategoryPostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 2
+    
 
     def get_queryset(self):
-       self.category = get_object_or_404(catagory, pk=self.kwargs.get('pk'))
+       self.category = get_object_or_404(tenders, pk=self.kwargs.get('pk'))
        return tenders.objects.filter(category=self.category).order_by('-date_posted')
     
+  
     def get_context_data(self, **kwargs):
         context = super(CategoryPostListView, self.category).get_context_data(**kwargs)
         context['catagory'] = self.catagory
         return context
-
 
 
 class UserPostListView(ListView):
@@ -106,7 +108,15 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin,CreateView):
     model = tenders
-    fields = ['title','body','company' 'category']
+    fields = ['title','body','company', 'category']
+   
+    title = forms.CharField(widget = forms.TextInput(attrs = {'class' : 'form-control'})),
+            
+               
+    
+   
+
+
     success_url = '../tenders'
     
   
@@ -134,7 +144,6 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
         if self.request.user == post.company:
             return True
         return False
-
 
  
 '''
