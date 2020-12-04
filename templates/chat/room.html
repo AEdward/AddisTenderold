@@ -1,15 +1,23 @@
-<!-- chat/templates/chat/room.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Room</title>
-</head>
-<body>
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+<div style="height: 113px;"></div>
+
+<div class="unit-5 overlay" style="background-image: url('../../media/cv.jpg');">
+  <div class="container text-center">
+    <h2 class="mb-0">Message|Room</h2>
+    <p class="mb-0 unit-6"><a href="{% url 'Home:index' %}">Home</a> <span class="sep">></span> <span>Message|room</span></p>
+  </div>
+</div>
+
+<br>
+<br>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
     <input id="chat-message-input" type="text" size="100"/><br/>
     <input id="chat-message-submit" type="button" value="Send"/>
-</body>
+
 <script>
     var roomName = "{{ room_name|escapejs }}";
 
@@ -44,4 +52,6 @@
         messageInputDom.value = '';
     };
 </script>
-</html>
+
+
+{% endblock %}

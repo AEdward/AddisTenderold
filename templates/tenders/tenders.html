@@ -10,33 +10,116 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row align-items-center">
-    <div class="col-12" data-aos="fade">
-      <h1>Find Tenders</h1>
-      <form method="GET" action="{% url 'tenders:search' %}">
-        <div class="row mb-3">
-          <div class="col-md-9">
-            <div class="row">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <input name="q" value="{{request.GET.q}}" type="text" class="" placeholder="tender title or  keywords ">
+
+
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12" data-aos="fade">
+            <h1>Find Tenders</h1>
+
+
+            <form method="GET" action="{% url 'tenders:search' %}" value="{{request.GET.q}}">
+              <div class="row mb-3">
+                <div class="col-md-9">
+                  <div class="row">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                      <input name="q" value="{{request.GET.q}}" type="text" class="form-control"
+                        placeholder="tender title or  keywords ">
+                        <input type="submit" class="btn btn-search btn-primary btn-block" value="Search">
+                    </div>
+
+                  </div>
+                </div>
+               
               </div>
-              
-            </div>
-          </div>
-          <div class="col-md-3">
-            <input type="submit" class="btn btn-search btn-primary btn-block" value="Search">
+
+
+            </form>
+
+
           </div>
         </div>
-       
-        
-      </form>
+      </div>
+
+
+      <div class="site-section bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 mb-5 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+              <h2 class="mb-5 h3">Categories</h2>
+              <div class="rounded border jobs-wrap">
+
+
+
+                <!--Categories Start-->
+
+                {% for item in cat_menu %}
+
+                <a href="{% url 'tenders:category' item%}"
+                  class="job-item d-block d-md-flex align-items-center  border-bottom fulltime">
+
+                  <div class="job-details h-100">
+                    <div class="p-3 align-self-center">
+                      <h3>{{ item }}</h3>
+
+                    </div>
+                  </div>
+                </a>
+                {% endfor %}
+
+
+
+              </div>
+            </div>
+
+            <!--Categories Start-->
+
+            <!--Featured Tenders-->
+
+
+
+
+
+            <div class="col-md-4 block-16" data-aos="fade-up" data-aos-delay="200">
+              <div class="d-flex mb-0">
+                <h2 class="mb-5 h3 mb-0">Featured Tenders</h2>
+                <div class="ml-auto mt-1"><a href="#" class="owl-custom-prev">Prev</a> / <a href="#"
+                    class="owl-custom-next">Next</a></div>
+              </div>
+
+              <div class="nonloop-block-16 owl-carousel">
+                {% for post in posts %}
+                <div class="border rounded p-4 bg-white">
+
+                  <h2 class="h5">{{post.title }}</h2>
+                 
+                  <p>
+                    <span class="d-block"><span class="icon-suitcase"></span> By <a href="{% url 'tenders:user-posts' post.company.username %}">{{ post.company }}</a></span>
+                    <span class="d-block"><span class="icon-room"></span> Category<a href="{% url 'tenders:category' post.category%}"> {{ post.category }}</a></span>
+                    <span class="d-block"><span class="icon-money mr-1"></span>  {{ post.date_posted }} <br/> Bid open - {{ post.open_date }}<br/>
+                    Bid Close - {{post.close_date}}</p></span>
+                  </p>
+                  <p class="mb-0"></p>
+                </div>
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--TEnders-->
     </div>
   </div>
 </div>
 
-
-<center> <h4 class="mb-3"> Total Posts ({{ page_obj.paginator.count}})</h4></center>
+<center>
+  <h4 class="mb-3"> Total Posts ({{page_obj.paginator.count}})</h4>
+</center>
 
 
 <div class="container">
@@ -45,59 +128,53 @@
       <div class="card-body">
         {% for post in posts %}
         <div class="col-md-12">
-          <h3 ><a class="article-title" href="{% url 'tenders:detail' post.id %}" >{{post.title}}</a></h3>
-
-            <p>Category<a href="#">  {{ post.category }}</a>
-              By <a href="{% url 'tenders:user-posts' post.company.username %}">{{ post.company }}</a> on {{ post.date_posted }}</p>
+          <h3><a class="article-title" href="{% url 'tenders:detail' post.id %}">{{post.title}}</a></h3>
+          <p>Category<a href="{% url 'tenders:category' post.category%}"> {{ post.category }}</a>
+            By <a href="{% url 'tenders:user-posts' post.company.username %}">{{ post.company }}</a> on
+            {{ post.date_posted }} <br/>
+            Bid open - {{ post.open_date }}<br/>
+            Bid Close - {{post.close_date}}</p>
           <!--  <p class="article-content">{{ post.body }}</p> -->
-           
-          </div>
-          {% endfor %}
 
-
-          <!---PAGINATION STARTS HERE-->
-          {% if is_paginated %}
-          
-          {% if page_obj.has_previous %}
-
-            <a class = "btn btn-outline-info mb-4" href="?page=1">First</a>
-            <a class = "btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-
-            {% endif %}
-
-            {% for num in page_obj.paginator.page_range %}
-               {% if page_obj.number == num %}
-
-              <a class = "btn btn-info mb-4" href="?page= {{ num }}">{{ num }}</a>
-
-              {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:' 3' %}
-              <a class = "btn btn-outline-info mb-4" href="?page= {{ num }}">{{ num }}</a>
-              {% endif %}
-
-            
-            {% endfor %}
-
-            {% if page_obj.has_next %}
-
-            <a class = "btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">First</a>
-            <a class = "btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">last</a>
-
-            {% endif %}
-
-
-            {% endif %}
-
-
-         
-
-          <!--PAGINATION ENDS HERE-->
         </div>
+        {% endfor %}
+
+
+        <!---PAGINATION STARTS HERE-->
+        {% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+
+        <a class="btn btn-info mb-4" href="?page= {{ num }}">{{ num }}</a>
+
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:' 3' %}
+        <a class="btn btn-outline-info mb-4" href="?page= {{ num }}">{{ num }}</a>
+        {% endif %}
+
+
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">last</a>
+
+        {% endif %}
+        {% endif %}
+       <!--PAGINATION ENDS HERE-->
       </div>
     </div>
-  </div>   
- 
-  </div>   
+  </div>
+</div>
 
-
+</div>
 
 {% endblock %}

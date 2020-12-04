@@ -1,11 +1,11 @@
-from django.contrib import admin
-from django.urls import path, include
-from .views import room
+from django.urls import path, re_path
+
+from . import views
+
 
 app_name = 'chat'
-urlpatterns = [
-    path('chat/', include('chat.urls')),
-    path('admin/', admin.site.urls),
-    path('<str:room_name>/', room, name='room'),
 
+urlpatterns = [
+    path('', views.index, name='index'),
+    re_path(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
 ]

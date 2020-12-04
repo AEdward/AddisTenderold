@@ -1,23 +1,88 @@
 {% extends 'base/base.html' %}
 {% block content %}
 
+<div class="container">
+    <div class="row align-items-center">
+      <div class="col-12" data-aos="fade">
+        <h1>Find Tenders</h1>
 
 
+        <form method="GET" action="{% url 'tenders:search' %}" value="{{request.GET.q}}">
+          <div class="row mb-3">
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <input name="q" value="{{request.GET.q}}" type="text" class="form-control"
+                    placeholder="tender title or  keywords ">
+                    <input type="submit" class="btn btn-search btn-primary btn-block" value="Search">
+                </div>
+
+              </div>
+            </div>
+           
+          </div>
+
+
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 card mb-4  mt-3 ">
+        <div class="card-body">
 <h1>Search results</h1>
 
+
+<h5> Results for <b> {{request.GET.q}} </b></h5>
+{% if object_list == posts %}
 <ul>
+    {% for post in object_list %}
+      <li>
+        <div class="col-md-12">
+            <h3 ><a class="article-title" href="{% url 'tenders:detail' post.id %}" >{{post.title}}</a></h3>
+  
+            
+                By <a href="{% url 'tenders:user-posts' post.company.username %}">{{ post.company }}</a> on {{ post.date_posted }}</p>
+            <!--  <p class="article-content">{{ post.body }}</p> -->
+             
+            </div>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
 
-{% for post in results %}
+<P>No search reuslts for this query</P>
 
-<li>
+{%  endif %}
+
+</div>
+</div>
+</div>
+</div>
+<!--
+{% if submitbutton == request.GET.q != " " %}
+
+<h5> Results for <b> {{request.GET.q}} </b></h5>
+{% if results == posts %}
+
+    {% for post in object_list %}
 
     {{post.title}}
+</br>
 
-</li>
+    {% endfor %}
+{% else %}
 
-{% endfor %}
+<P>No search reuslts for this query</P>
+
+{%  endif %}
+{% endif %}
 
 
-</ul>
 
+-->
 {% endblock %}

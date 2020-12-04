@@ -16,7 +16,7 @@
         <div class="col-md-12">
           <h1 class="article-title">{{ object.title }}</h1>
           <p>By  <a href="">{{ object.company }}</a> on {{ object.date_posted }}</p>
-          <p>{{ object.body }}</p>
+          <p>{{ object.body|safe }}</p>
 
         </div>
       

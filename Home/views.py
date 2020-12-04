@@ -3,10 +3,19 @@ from django.http import HttpResponse
 import datetime
 #from AddisTender.tenders import views, models
 from django.views.generic import (ListView)
+from tenders.models import tenders,Catagory
+#from tenders.views import  PostListView
+
+from django.views.generic import (ListView)
+
+
 def home(request):
+    
     return render (request,'Home/index.html',{'title':'Home'})
 
-def index(request):
+
+
+'''def index(request):
         
     context = {
          'posts':tenders.objects.all()
@@ -30,3 +39,4 @@ posts = [
     }
 ]
 
+'''
