@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+	<div id="box">
+		<img id="succes-icon" src="{{user.profile.image.url}}">
+		<h4>Thank you for your Payment of ${{amount}}!</h4>
+		<p>Your support aspiring Tenders around the world! You should receive a receipt to the email you provided shortly :)</p>
+		<hr>
+	
+	</div>
+
+{% endblock content %}

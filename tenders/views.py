@@ -15,9 +15,49 @@ UpdateView,DeleteView)
 from django import forms
 from .forms import TendersForm
 from django.core.files.storage import FileSystemStorage 
-from .forms import UploadFileForm
+
 # Imaginary function to handle an uploaded file.
 #from somewhere import handle_uploaded_file
+
+
+
+class PostCreateView(LoginRequiredMixin,CreateView):
+    model = tenders
+    form_class = TendersForm   
+    success_url = '../tenders'
+    context={'file':tenders.objects.all()}
+
+def download(request,path):
+	file_path=os.path.join(settings.MEDIA_ROOT,path)
+	if os.path.exists(file_path):
+		with open(file_path,'rb')as fh:
+			response=HttpResponse(fh.read(),content_type="application/document")
+			response['Content-Disposition']='inline;filename='+os.path.basename(file_path)
+			return response
+
+	raise Http404		
+
+
+
+
+
+
+
+
+'''
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'])
+            return HttpResponseRedirect('/success/url/')
+    else:
+        form = UploadFileForm()
+    return render(request, 'tenders_form.html', {'form': form})
+'''
+
+
+
 
 
 
@@ -63,70 +103,26 @@ class SearchPostListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         object_list = tenders.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
+       # users = User.objects.filter(Q(username__icontains=query))
 
         return object_list
 
 
 
-
-
-
-''' 
-   def SearchPosts(request, submitbutton):
-
-        if request.method == 'GET':
-            query = request.GET.get('q')  
-            submitbutton = request.GET.get('submit')
-            if query is not None:
-                results = tenders.objects.filter(Q(title__icontains=query) | Q(body__icontains=query)).order_by('-date_posted').distinct()
-
-                context = {'results': results, 'submitbutton':submitbutton}
-                return render (request, 'tenders/search.html',context )
-            else:
-                 return render (request, 'tenders/search.html',context )
-        else:
-             return render (request, 'tenders/search.html',context )
-'''
-
 class PostDetailView(DetailView):
     model = tenders
 
-class PostCreateView(LoginRequiredMixin,CreateView):
-    model = tenders
-    form_class = TendersForm   
-    success_url = '../tenders'
 
-def upload_file(request):
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            handle_uploaded_file(request.FILES['file'])
-            return HttpResponseRedirect('/success/url/')
-    else:
-        form = UploadFileForm()
-    return render(request, 'tenders_form.html', {'form': form})
-
-
-
-
-
-
-'''  
-def upload(request):
-        if request.method == 'POST':
-            uploaded_file = request.Files ['documents']
-            fs = FileSystemStorage()
-            fs.save(uploaded_file.name, uploaded_file)
-           
-            # print(uploaded_file.name)
-             #print(uploaded_file.size) 
-
-        return #render (request, '')
-
- '''  
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = tenders
-    fields = ['title','body','company' ]
+    fields = ['title','company','body','open_date','close_date' ]
+            
+    widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'open_date':forms.DateTimeInput(attrs={'class': 'form-control','data-target': 'datetimepicker'}),
+            'close_date':forms.DateTimeInput(attrs={'class': 'form-control datetimepicker-input','data-target': '#datetimepicker1'}),
+            
+        }
     success_url = '../'
     
     def test_func(self):

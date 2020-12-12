@@ -17,6 +17,8 @@
           <h1 class="article-title">{{ object.title }}</h1>
           <p>By  <a href="">{{ object.company }}</a> on {{ object.date_posted }}</p>
           <p>{{ object.body|safe }}</p>
+         
+	<button class = "bg-warning py-3 px-4 rounded" class="icon-plus mr-3"><a class ="text-black" href="{{object.document.url}}" download="{{object.document.url}}">Download</a></button>
 
         </div>
       

@@ -1,34 +1,123 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href= "{% static 'css/bulma.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css'%} ">
 
-<div style="height: 113px;"></div>
 
-<div class="unit-5 overlay" style="background-image: url('../../media/cv.jpg');">
-  <div class="container text-center">
-    <h2 class="mb-0">Message</h2>
-    <p class="mb-0 unit-6"><a href="{% url 'Home:index' %}">Home</a> <span class="sep">></span> <span>Message</span></p>
+
+
+
+<div class="site-section bg-light">
+  <div class="container">
+<div class = "columns is-mobile is centered">
+
+
+  <div class="columns is-one-quarter">
+
+
+<aside class="menu">
+  <h1 class="title is-2"> Message</h1>
+  <ul style="overflow-y: scroll; height: 500px;" class="menu-list">
+
+ 
+{% for message in messages %}
+  <!--USER starts-->
+  <a class="{% if active_direct == message.user.username %}is-active{% endif %}" href="{% url 'chat:directs' message.user.username %}">
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            {% if message.user.profile.picture %}
+            <img src="{{ message.user.profile.image.url }}" alt="Placeholder image">
+            {% else %}
+            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+            {% endif %}
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>@{{ message.user.username }}</strong> 
+              
+            </p>
+          </div>
+          <div class="content">
+            {% if message.unread %}
+            <p style="font-weight: bold; color: red;">
+              <i class="material-icons">mark_chat_unread</i> {{ message.unread }}
+            </p>
+            {% endif %}        
+          </div>
+        </div>
+      </article>
+    </div>
+  </a>
+  {% endfor %}
+    <!--USER ENDS-->
+
+    
+  </ul>
+  <br>
+  <a href="{% url 'chat:usersearch' %}"class = "button is-success">New Message</a>
+</aside>
+
+</div> 
+
+<div class="column">
+<div style="overflow-y: scroll; height: 500px;" >
+  {% for direct in directs %}
+  
+  <div class="box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+        </figure>
+      </div>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong>@{{ direct.sender.username }}</strong> ----<small>{{ direct.date|date:'N d G:i'}}</small>
+          <br>   {{ direct.body }} 
+          </p>
+        </div>
+      
+      </div>
+    </article>
   </div>
+  {% endfor %}
 </div>
 
 
-What chat room would you like to enter?<br>
-<input id="room-name-input" type="text" size="100"><br>
-<input id="room-name-submit" type="button" value="Enter">
-
-<script>
-    document.querySelector('#room-name-input').focus();
-    document.querySelector('#room-name-input').onkeyup = function(e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#room-name-submit').click();
-        }
-    };
-
-    document.querySelector('#room-name-submit').onclick = function(e) {
-        var roomName = document.querySelector('#room-name-input').value;
-        window.location.pathname = '/chat/' + roomName + '/';
-    };
-</script>
-
-
+<form role="form" method="POST" action="{% url 'chat:send_direct' %}">
+  {% csrf_token %}
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="https://bulma.io/images/placeholders/128x128.png">
+    </p>
+  </figure>
+  <div class="media-content">
+    <input type="hidden" name="to_user" value="{{ active_direct }}">
+    <div class="field">
+      <p class="control">
+        <textarea class="textarea" placeholder="send message..."></textarea>
+      </p>
+    </div>
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <button type="submit" name="action" class="button is-info">Send</buttom>
+        </div>
+      </div>   
+    </nav>
+  </div>
+</article>
+</form>
+</div>
+</div>
+</div>
+</div>
 {% endblock %}

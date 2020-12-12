@@ -3,93 +3,168 @@
 {% block content %}
 
 
-<div style="height: 0 px;"></div>
+<div style="height: 10px;"></div>
 
-<div class="unit-9 overlay" style="background-image: url('media/hero_1.jpg'); height: 100px;" data-aos="fade"
+
+<!--Banner Start-->
+<div class="site-blocks-cover overlay inner-page" style="background-image: url('media/hero_1.jpg');" data-aos="fade"
   data-stellar-background-ratio="0.5">
-  
 
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-6 text-center" data-aos="fade">
+        <h1 class="h3 mb-0">Start your next</h1>
+        <p class="h3 text-white mb-5">Big Project</p>
+        <p><a href="{% url 'tenders:index' %}" class="btn btn-outline-warning py-3 px-4">Find Tenders</a> <a
+            href="{% url 'contact:contact' %}" class="btn btn-warning py-3 px-4">Contact Us </a></p>
 
-        </form>
       </div>
     </div>
   </div>
 </div>
-{% for item in cat_menu %}
-{{ item }} <br/>
 
-{% endfor %}
 
-<div class="site-section">
+<!--Banner End-->
+<div class="container">
+  <div class="col-12">
+      <h1>Email Newsletter</h1>
+  </div>
+  <div class="col-12">
+      {% if email %}
+      <p>{{ email }} has been {{ action }}.</p>
+      {% endif %}
+  </div>
+{% if form %}
+  <div class="col-12 col-md-4">
+      <form method="post" novalidate>
+          {% csrf_token %}
+          {{ form }}
+        
+          <br>
+          <button type="submit" class="btn btn-success">Subscribe!</button>
+      </form>
+  </div>
+{% endif %}
+</div>
+</div>
+
+
+<!--Section start Here-->
+<div class="site-section site-block-feature bg-light">
+  <div class="container">
+    
+    <div class="text-center mb-5 section-heading">
+      <h2>Why Choose Us</h2>
+    </div>
+
+    <div class="d-block d-md-flex border-bottom">
+      <div class="text-center p-4 item border-right" data-aos="fade">
+        <span class="material-icons display-3 mb-3 d-block text-primary">home</span>
+        <h2 class="h2">More Tenders Every Day</h2>
+        <p>  First Impressions is comprised of specialists with corporate and agency 
+          experience that hail from various backgrounds. As such, First Impressions will 
+          never assign second-tier (or gasp! third tier!) support staff to any account. </p>
+           
+             </div>
+             
+
+      <div class="text-center p-4 item" data-aos="fade">
+        <span class="material-icons display-3 mb-3 d-block text-primary">home</span>
+        <h2 class="h2">Reliable</h2>
+        <p>  First Impressions is comprised of specialists with corporate and agency 
+          experience that hail from various backgrounds. As such, First Impressions will 
+          never assign second-tier (or gasp! third tier!) support staff to any account. </p>
+         </div>
+        
+    </div>
+
+    <div class="d-block d-md-flex">
+      <div class="text-center p-4 item border-right" data-aos="fade">
+        <span class="material-icons display-3 mb-3 d-block text-primary">home</span>
+        <h2 class="h2">Secure</h2>
+        <p>  First Impressions is comprised of specialists with corporate and agency 
+          experience that hail from various backgrounds. As such, First Impressions will 
+          never assign second-tier (or gasp! third tier!) support staff to any account. </p>
+             </div>
+      <div class="text-center p-4 item" data-aos="fade">
+        <span class="material-icons display-3 mb-3 d-block text-primary">home</span>
+        <h2 class="h2">Avaliable</h2>
+        <p>  First Impressions is comprised of specialists with corporate and agency 
+          experience that hail from various backgrounds. As such, First Impressions will 
+          never assign second-tier (or gasp! third tier!) support staff to any account. </p>
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+<!--Section Ends here-->
+
+
+<div class="site-section block-15">
   <div class="container">
     <div class="row">
       <div class="col-md-6 mx-auto text-center mb-5 section-heading">
-        <h2 class="mb-5">Partners</h2>
+        <h2>Ours Partners</h2>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="100">
-        <a href="#" class="h-100 feature-item">
-          <span class="d-block icon flaticon-calculator mb-3 text-primary"></span>
-          <h2>Accounting / Finanace</h2>
-          <span class="counting">10,391</span>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="200">
-        <a href="#" class="h-100 feature-item">
-          <span class="d-block icon flaticon-wrench mb-3 text-primary"></span>
-          <h2>Automotive Jobs</h2>
-          <span class="counting">192</span>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="300">
-        <a href="#" class="h-100 feature-item">
-          <span class="d-block icon flaticon-worker mb-3 text-primary"></span>
-          <h2>Construction / Facilities</h2>
-          <span class="counting">1,021</span>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="400">
-        <a href="#" class="h-100 feature-item">
-          <span class="d-block icon flaticon-telecommunications mb-3 text-primary"></span>
-          <h2>Telecommunications</h2>
-          <span class="counting">1,219</span>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="500">
-        <a href="#" class="h-100 feature-item">
-          <span class="d-block icon flaticon-stethoscope mb-3 text-primary"></span>
-          <h2>Healthcare</h2>
-          <span class="counting">482</span>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="600">
-        <a href="#" class="h-100 feature-item">
-          <span class="d-block icon flaticon-computer-graphic mb-3 text-primary"></span>
-          <h2>Design, Art &amp; Multimedia</h2>
-          <span class="counting">5,409</span>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="700">
-        <a href="#" class="h-100 feature-item">
-          <span class="d-block icon flaticon-trolley mb-3 text-primary"></span>
-          <h2>Transportation &amp; Logistics</h2>
-          <span class="counting">291</span>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="800">
-        <a href="#" class="h-100 feature-item">
-          <span class="d-block icon flaticon-restaurant mb-3 text-primary"></span>
-          <h2>Restaurant / Food Service</h2>
-          <span class="counting">329</span>
-        </a>
-      </div>
-    </div>
+   
+    <div class="nonloop-block-15 owl-carousel">
 
-  </div>
+
+      <div class="media-with-text">
+        <div class="img-border-sm mb-4">
+          <a href="#" class="image-play"><img src=" media/hero_1.jpg "alt="" class="img-fluid"></a>
+        </div>
+        </div>
+        <div class="media-with-text">
+          <div class="img-border-sm mb-4">
+            <a href="#" class="image-play"><img src=" media/hero_1.jpg "alt="" class="img-fluid"></a>
+          </div>
+          </div>
+          <div class="media-with-text">
+            <div class="img-border-sm mb-4">
+              <a href="#" class="image-play"><img src=" media/hero_1.jpg "alt="" class="img-fluid"></a>
+            </div>
+            </div>
+            <div class="media-with-text">
+              <div class="img-border-sm mb-4">
+                <a href="#" class="image-play"><img src=" media/hero_1.jpg "alt="" class="img-fluid"></a>
+              </div>
+              </div>
+              <div class="media-with-text">
+                <div class="img-border-sm mb-4">
+                  <a href="#" class="image-play"><img src=" media/hero_1.jpg "alt="" class="img-fluid"></a>
+                </div>
+                </div>
+                <div class="media-with-text">
+                  <div class="img-border-sm mb-4">
+                    <a href="#" class="image-play"><img src=" media/hero_1.jpg "alt="" class="img-fluid"></a>
+                  </div>
+                  </div>
+                  <div class="media-with-text">
+                    <div class="img-border-sm mb-4">
+                      <a href="#" class="image-play"><img src=" media/hero_1.jpg "alt="" class="img-fluid"></a>
+                    </div>
+                    </div>
+                    <div class="media-with-text">
+                      <div class="img-border-sm mb-4">
+                        <a href="#" class="image-play"><img src=" media/hero_1.jpg "alt="" class="img-fluid"></a>
+                      </div>
+                      </div>
+
+    
+</div>
 </div>
 
 
+    </div>
 
-        
+  </div>
+
+
+
+
+
 {% endblock %}

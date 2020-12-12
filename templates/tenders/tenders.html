@@ -1,16 +1,6 @@
 {% extends 'base/base.html' %}
 {% block content %}
 
-<div style="height: 113px;"></div>
-
-<div class="unit-5 overlay" style="background-image: url('../../media/cv.jpg');">
-  <div class="container text-center">
-    <h2 class="mb-0">Tender</h2>
-    <p class="mb-0 unit-6"><a href="{% url 'Home:index' %}">Home</a> <span class="sep">></span> <span>Tender</span></p>
-  </div>
-</div>
-
-
 
 <div class="site-section">
   <div class="container">
@@ -118,7 +108,14 @@
 </div>
 
 <center>
-  <h4 class="mb-3"> Total Posts ({{page_obj.paginator.count}})</h4>
+  <h4 class="mb-3"> Total Posts ({{page_obj.paginator.count}})</h4> 
+
+  {% for post in posts %}
+  <a href="{% url 'tenders:user-posts' post.company.username %}"> My Tenders</a>
+  {% endfor %}
+
+
+
 </center>
 
 
@@ -127,6 +124,7 @@
     <div class="col-md-12 card mb-4  mt-3 ">
       <div class="card-body">
         {% for post in posts %}
+        
         <div class="col-md-12">
           <h3><a class="article-title" href="{% url 'tenders:detail' post.id %}">{{post.title}}</a></h3>
           <p>Category<a href="{% url 'tenders:category' post.category%}"> {{ post.category }}</a>

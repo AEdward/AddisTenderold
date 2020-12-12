@@ -1,11 +1,14 @@
-from django.urls import path, re_path
+from django.urls import path
+from chat.views import Inbox, UserSearch, Directs, NewConversation, SendDirect
 
-from . import views
 
-
-app_name = 'chat'
+app_name = "chat"
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    re_path(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
+   	path('', Inbox, name='inbox'),
+   	path('directs/<username>', Directs, name='directs'),
+   	path('new/', UserSearch, name='usersearch'),
+   	path('new/<username>', NewConversation, name='newconversation'),
+   	path('send/', SendDirect, name='send_direct'),
+
 ]

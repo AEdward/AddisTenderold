@@ -1,0 +1,44 @@
+Home page
+	* Popular Category
+	* Recent Tenders
+	* Featured Tenders
+	* Footer
+		* About readmore (DONE)
+		* Quick Menu (DONE)
+		* categories (DONE)
+		* Social Icon 
+About Page	
+	* Edit paragraph (DONE)
+	* Edit FAQ {Bella}
+
+Tenders page {MINE}
+	* List Tenders (DONE)
+	* Post Tenders
+	* View Detail Tenders (DONE)
+	* Crispy Form (DONE with another)
+	* search  (FIX)
+	* catagory
+	* Download   
+Notification page
+	* Get Notification 
+Message page
+	* User Chat Message 
+Contact page
+	* send message to Email	
+	
+Profile page
+	* Edit profile page (DONE)
+	* 
+registration
+	* paymnet   {Mine}
+	* Password and EMail reset
+
+
+
+HOST SITE
+
+Stripe
+
+Magiccarpet858Anahom858
+
+

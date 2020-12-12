@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'contact.apps.ContactConfig',
     'tenders.apps.TendersConfig',
-     'notification',
+     'notifications.apps.NotificationConfig',
     #'crispy_forms'
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,8 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
-    'chat',
+    'chat.apps.ChatConfig',
     'channels',
+   'payment.apps.PaymentConfig',
+
     
     #'ckeditor_uploader'
     
